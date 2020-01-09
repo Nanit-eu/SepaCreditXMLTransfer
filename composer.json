@@ -1,5 +1,5 @@
 {
-  "name": "Nanit-eu/SepaCreditXMLTransfer",
+  "name": "nanit-eu/sepa-credit-xml-transfer",
   "type": "library",
   "description": "Basic SepaCreditXMLTransfer (pain.001.001.03) implementation",
   "keywords": ["log","logging"],
