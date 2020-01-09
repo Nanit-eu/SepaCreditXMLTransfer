@@ -6,6 +6,7 @@ use http\Client\Response;
 use Nanit\SepaCreditXMLTransfer\Entity\Debtor;
 use Nanit\SepaCreditXMLTransfer\Entity\Initation;
 use Nanit\SepaCreditXMLTransfer\Entity\Transaction;
+use Nanit\SepaCreditXMLTransfer\Exception\XmlValidationException;
 
 /**
  * Class ExportService
@@ -71,8 +72,13 @@ class ExportService {
         }
             $sepa->build();
             if($sepa->validateXML())
+            {
                 return $sepa->getXML();
-            //else throw new Exception('Error');
+            }
+            else
+            {
+                throw new XmlValidationException('Error');
+            }
 
     }
 

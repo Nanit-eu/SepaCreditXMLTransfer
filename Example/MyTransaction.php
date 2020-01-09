@@ -1,7 +1,7 @@
 <?php
 use Nanit\SepaCreditXMLTransfer\Models\TransactionModel;
 
-class WikiTransaction extends TransactionModel {
+class MyTransaction extends TransactionModel {
     function __construct($name,$amount,$iban,$bic,$com)
     {
         $this->setName($name)
