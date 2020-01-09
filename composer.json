@@ -1,0 +1,7 @@
+{
+  "name": "Nanit-eu/SepaCreditXMLTransfer",
+  "description": "Basic SepaCreditXMLTransfer (pain.001.001.03) implementation",
+  "require": {
+    "php": "^7.2"
+  }
+}
