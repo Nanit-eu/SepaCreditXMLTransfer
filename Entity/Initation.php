@@ -2,7 +2,6 @@
 
 namespace Nanit\SepaCreditXMLTransfer\Entity;
 
-use mysql_xdevapi\Exception;
 
 class Initation
 {
@@ -10,10 +9,6 @@ class Initation
     private $transactions = array();
     private $msgid;
     private $transid;
-
-    private $orgName             = null;
-    private $orgIban             = null;
-    private $orgBic            = null;
 
     /** @var Debtor Debtor informations */
     private $debtor;
@@ -95,8 +90,6 @@ class Initation
             $DbtrAgt->addChild('FinInstnId')->addChild('BIC', $this->debtor->getOrgBic());
 
             foreach ($trans as $key => $t) {
-                var_dump($t);
-
                 $CdtTrfTxInf            = $pmtinf->addChild('CdtTrfTxInf');
                 $tid                     = $this->transid.'-'.$group."-".$key;
                 if(isset($t->transaction_id))

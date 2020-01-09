@@ -16,6 +16,13 @@
   "require": {
     "php": ">=7.1.0"
   },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "master",
+      "1.0": "master"
+    }
+  },
+  "prefer-stable": true,
   "autoload": {
     "psr-0": {
       "Monolog": "src"
