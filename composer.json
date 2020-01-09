@@ -1,7 +1,24 @@
 {
   "name": "Nanit-eu/SepaCreditXMLTransfer",
+  "type": "library",
   "description": "Basic SepaCreditXMLTransfer (pain.001.001.03) implementation",
+  "keywords": ["log","logging"],
+  "homepage": "https://nanit.eu/SepaCreditXMLTransfer",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Fred Nandrin",
+      "email": "fred@nanit.eu",
+      "homepage": "http://nanit.eu",
+      "role": "Developer"
+    }
+  ],
   "require": {
-    "php": "^7.2"
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "Monolog": "src"
+    }
   }
 }
