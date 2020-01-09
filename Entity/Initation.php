@@ -1,6 +1,6 @@
 <?php
 
-namespace Nanit\SepaCreditXMLTransfer\Entity;
+namespace NanitEu\SepaCreditXMLTransfer\Entity;
 
 
 class Initation

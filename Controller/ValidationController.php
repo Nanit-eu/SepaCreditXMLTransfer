@@ -1,6 +1,6 @@
 <?php
 
-namespace Nanit\SepaCreditXMLTransfer\Controller;
+namespace NanitEu\SepaCreditXMLTransfer\Controller;
 
 class ValidationController
 {

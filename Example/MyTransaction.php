@@ -1,7 +1,8 @@
 <?php
-use Nanit\SepaCreditXMLTransfer\Models\TransactionModel;
+use NanitEu\SepaCreditXMLTransfer\Models\TransactionModel;
+use NanitEu\SepaCreditXMLTransfer\Models\TransactionModelInterface;
 
-class MyTransaction extends TransactionModel {
+class MyTransaction extends TransactionModel implements TransactionModelInterface {
     function __construct($name,$amount,$iban,$bic,$com)
     {
         $this->setName($name)
@@ -13,7 +14,7 @@ class MyTransaction extends TransactionModel {
 
     /**
      * @param mixed $Name
-     * @return TransactionModel
+     * @return MyTransaction
      */
     public function setName($Name)
     {
@@ -23,7 +24,7 @@ class MyTransaction extends TransactionModel {
 
     /**
      * @param mixed $Iban
-     * @return TransactionModel
+     * @return MyTransaction
      */
     public function setIban($Iban)
     {
@@ -33,7 +34,7 @@ class MyTransaction extends TransactionModel {
 
     /**
      * @param mixed $Bic
-     * @return TransactionModel
+     * @return MyTransaction
      */
     public function setBic($Bic)
     {
@@ -43,7 +44,7 @@ class MyTransaction extends TransactionModel {
 
     /**
      * @param mixed $Com
-     * @return TransactionModel
+     * @return MyTransaction
      */
     public function setCom($Com)
     {
@@ -53,7 +54,7 @@ class MyTransaction extends TransactionModel {
 
     /**
      * @param mixed $E2E
-     * @return TransactionModel
+     * @return MyTransaction
      */
     public function setE2E($E2E)
     {
@@ -63,7 +64,7 @@ class MyTransaction extends TransactionModel {
 
     /**
      * @param mixed $Amount
-     * @return TransactionModel
+     * @return MyTransaction
      */
     public function setAmount($Amount)
     {

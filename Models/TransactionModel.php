@@ -1,6 +1,6 @@
 <?php
 
-namespace Nanit\SepaCreditXMLTransfer\Models;
+namespace NanitEu\SepaCreditXMLTransfer\Models;
 
 abstract class TransactionModel {
     /** Name  */

@@ -1,8 +1,8 @@
 <?php
 
-namespace Nanit\SepaCreditXMLTransfer\Entity;
+namespace NanitEu\SepaCreditXMLTransfer\Entity;
 
-use Nanit\SepaCreditXMLTransfer\Controller\ValidationController;
+use NanitEu\SepaCreditXMLTransfer\Controller\ValidationController;
 
 class Debtor
 {

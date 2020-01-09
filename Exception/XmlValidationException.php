@@ -1,5 +1,5 @@
 <?php
-namespace Nanit\SepaCreditXMLTransfer\Exception;
+namespace NanitEu\SepaCreditXMLTransfer\Exception;
 /**
  * SEPA xml file generator.
  *

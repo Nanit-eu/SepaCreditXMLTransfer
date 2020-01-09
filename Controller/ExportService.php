@@ -1,12 +1,12 @@
 <?php
 
-namespace Nanit\SepaCreditXMLTransfer\Controller;
+namespace NanitEu\SepaCreditXMLTransfer\Controller;
 
-use http\Client\Response;
-use Nanit\SepaCreditXMLTransfer\Entity\Debtor;
-use Nanit\SepaCreditXMLTransfer\Entity\Initation;
-use Nanit\SepaCreditXMLTransfer\Entity\Transaction;
-use Nanit\SepaCreditXMLTransfer\Exception\XmlValidationException;
+use NanitEu\SepaCreditXMLTransfer\Entity\Debtor;
+use NanitEu\SepaCreditXMLTransfer\Entity\Initation;
+use NanitEu\SepaCreditXMLTransfer\Entity\Transaction;
+use NanitEu\SepaCreditXMLTransfer\Exception\XmlValidationException;
+use NanitEu\SepaCreditXMLTransfer\Models\TransactionModelInterface;
 
 /**
  * Class ExportService
@@ -43,7 +43,7 @@ class ExportService {
             $this->debtor = new Debtor('BE13001319659839', 'GEBABEBB', 'Fred');
         }
     }
-    function addTransaction( \Nanit\SepaCreditXMLTransfer\Models\TransactionModel $transaction)
+    function addTransaction( TransactionModelInterface $transaction)
     {
         array_push($this->transactions,$transaction);
     }
@@ -56,7 +56,7 @@ class ExportService {
         $sepa->setDebtor($this->debtor);
         if (count($this->transactions) > 0) {
             /**
-             * @var \Nanit\SepaCreditXMLTransfer\Models\TransactionModel $transaction
+             * @var \NanitEu\SepaCreditXMLTransfer\Models\TransactionModel $transaction
              */
             foreach ($this->transactions as $transaction) {
                 $sepa_transaction = new Transaction(
@@ -71,13 +71,14 @@ class ExportService {
             }
         }
             $sepa->build();
-            if($sepa->validateXML())
+            try
             {
+                $sepa->validateXML();
                 return $sepa->getXML();
             }
-            else
+            catch (\Exception $e)
             {
-                throw new XmlValidationException('Error');
+                throw new XmlValidationException('Validation Error',0,$e);
             }
 
     }

@@ -7,11 +7,8 @@ include_once "../Controller/ValidationController.php";
 include_once "../Models/TransactionModel.php";
 include_once "MyTransaction.php";
 
-use Nanit\SepaCreditXMLTransfer\Controller\ExportService;
-use Nanit\SepaCreditXMLTransfer\Entity\Debtor;
-use Nanit\SepaCreditXMLTransfer\Entity\Initation;
-use Nanit\SepaCreditXMLTransfer\Entity\Transaction;
-use Nanit\SepaCreditXMLTransfer\Models\TransactionModel;
+use NanitEu\SepaCreditXMLTransfer\Controller\ExportService;
+use NanitEu\SepaCreditXMLTransfer\Entity\Debtor;
 $i=1;
 $service = new ExportService(new Debtor('BE13001319659839','GEBABEBB','Fred SPRL'));
 $service->addTransaction(new MyTransaction('fred&aa @ ezez1', 123.45,'BE14665349856987','GEBABEBB','transaction '.$i++));
