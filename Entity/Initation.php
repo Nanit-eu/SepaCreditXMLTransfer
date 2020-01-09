@@ -137,8 +137,11 @@ class Initation
         if ($res) {
             return $res;
         } else {
-            var_dump($errors);
-            throw new \Exception( $errors[0]);
+            $msg='';
+            foreach($errors as $error) {
+                $msg="\n".$error->message;
+            }
+            throw new \Exception($msg);
         }
     }
 }
