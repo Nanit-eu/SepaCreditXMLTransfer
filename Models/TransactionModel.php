@@ -2,7 +2,8 @@
 
 namespace NanitEu\SepaCreditXMLTransfer\Models;
 
-abstract class TransactionModel {
+abstract class TransactionModel implements TransactionModelInterface
+    {
     /** Name  */
     protected $Name;
     protected $Iban;
