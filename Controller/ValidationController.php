@@ -112,7 +112,7 @@ public static function validateIBAN($str)
 public static function validateBIC($str)
 {
     $regexvalid            = preg_match("/^[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}$/", $str);
-    return $regexvalid;
+    return $regexvalid!=0;
 }
 
 }
