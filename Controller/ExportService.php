@@ -2,6 +2,7 @@
 
 namespace NanitEu\SepaCreditXMLTransfer\Controller;
 
+use Exception;
 use NanitEu\SepaCreditXMLTransfer\Entity\Debtor;
 use NanitEu\SepaCreditXMLTransfer\Entity\Initation;
 use NanitEu\SepaCreditXMLTransfer\Entity\Transaction;
@@ -43,9 +44,21 @@ class ExportService {
             $this->debtor = new Debtor('BE13001319659839', 'GEBABEBB', 'Fred');
         }
     }
+
+    /**
+     * Add a transaction to transactions list
+     * @param TransactionModelInterface $transaction
+     * @return bool Successfully add transaction
+     */
     function addTransaction( TransactionModelInterface $transaction)
     {
-        array_push($this->transactions,$transaction);
+        if($transaction->isValid()) {
+            array_push($this->transactions, $transaction);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     function export($batchId=null)
@@ -76,7 +89,7 @@ class ExportService {
                 $sepa->validateXML();
                 return $sepa->getXML();
             }
-            catch (\Exception $e)
+            catch (Exception $e)
             {
                 throw new XmlValidationException('Validation Error',0,$e);
             }
