@@ -1,6 +1,7 @@
 <?php
 
-use NanitEu\SepaCreditXMLTransfer\Controller\ValidationController;
+namespace NanitEu\SepaCreditXMLTransfer\Example;
+
 use NanitEu\SepaCreditXMLTransfer\Models\TransactionModel;
 use NanitEu\SepaCreditXMLTransfer\Models\TransactionModelInterface;
 

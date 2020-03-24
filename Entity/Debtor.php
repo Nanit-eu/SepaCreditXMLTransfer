@@ -7,11 +7,19 @@ use NanitEu\SepaCreditXMLTransfer\Controller\ValidationController;
 class Debtor
 {
 
+    const DEBTOR_INVALID = '100';
+
     public $orgName             = null;
     public $orgIban             = null;
     public $orgBic            = null;
 
-    public function __construct($orgIban=null,$orgBic=null,$orgName=null)
+    /**
+     * Debtor constructor.
+     * @param string $orgIban
+     * @param string $orgBic
+     * @param string $orgName
+     */
+    public function __construct(string $orgIban, string  $orgBic, string $orgName)
     {
         if(isset($orgIban)) {
             $this->orgIban = $orgIban;

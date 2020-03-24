@@ -9,12 +9,22 @@ include_once "MyTransaction.php";
 
 use NanitEu\SepaCreditXMLTransfer\Controller\ExportService;
 use NanitEu\SepaCreditXMLTransfer\Entity\Debtor;
-$i=1;
-$service = new ExportService(new Debtor('BE13001319659839','GEBABEBB','Fred SPRL'));
-$service->addTransaction(new MyTransaction('fred&aa @ ezez1', 123.45,'BE14665349856987','GEBABEBB','transaction '.$i++));
-$service->addTransaction(new MyTransaction('fred&aa @ ezez2', 321.45,'BE14665349856987','GEBABEBB','transaction '.$i++));
-$service->addTransaction(new MyTransaction('fred&aa @ ezez3', 987.45,'BE14665349856987','GEBABEBB','transaction '.$i++));
+use NanitEu\SepaCreditXMLTransfer\Example\MyTransaction;
+use NanitEu\SepaCreditXMLTransfer\Exception\InvalidDebtorException;
+use NanitEu\SepaCreditXMLTransfer\Exception\XmlValidationException;
 
-$filename='./export-'.date("Ymdhi").'.xml';
+$i = 1;
+try {
+    $service = new ExportService(new Debtor('BE13001319659839', 'GEBABEBB', 'Fred SPRL'));
+    $service->addTransaction(new MyTransaction('fred&aa @ ezez1', 123.45, 'BE14665349856987', 'GEBABEBB', 'transaction ' . $i++));
+    $service->addTransaction(new MyTransaction('fred&aa @ ezez2', 321.45, 'BE14665349856987', 'GEBABEBB', 'transaction ' . $i++));
+    $service->addTransaction(new MyTransaction('fred&aa @ ezez3', 987.45, 'BE14665349856987', 'GEBABEBB', 'transaction ' . $i++));
 
-file_put_contents($filename, $service->export());
+    $filename = './export-' . date("Ymdhi") . '.xml';
+
+    file_put_contents($filename, $service->export());
+} catch (InvalidDebtorException $e) {
+    $this->assertFalse(true, 'Exception was raised while instantiate ExportService');
+} catch (XmlValidationException $e) {
+    $this->assertFalse(true, 'Check if output is valid');
+}

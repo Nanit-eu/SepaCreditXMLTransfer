@@ -6,7 +6,9 @@ use Exception;
 use NanitEu\SepaCreditXMLTransfer\Entity\Debtor;
 use NanitEu\SepaCreditXMLTransfer\Entity\Initation;
 use NanitEu\SepaCreditXMLTransfer\Entity\Transaction;
+use NanitEu\SepaCreditXMLTransfer\Exception\InvalidDebtorException;
 use NanitEu\SepaCreditXMLTransfer\Exception\XmlValidationException;
+use NanitEu\SepaCreditXMLTransfer\Models\TransactionModel;
 use NanitEu\SepaCreditXMLTransfer\Models\TransactionModelInterface;
 
 /**
@@ -24,7 +26,8 @@ use NanitEu\SepaCreditXMLTransfer\Models\TransactionModelInterface;
  *
  * @package Nanit\SepaCreditXMLTransfer\Controller
  */
-class ExportService {
+class ExportService
+{
     /**
      * @var Transaction[] Transaction list
      */
@@ -34,14 +37,11 @@ class ExportService {
 
     function __construct(Debtor $debtor)
     {
-        $this->transactions=[];
-        if($debtor->isValid())
-        {
-            $this->debtor=$debtor;
-        }
-        else
-        {
-            $this->debtor = new Debtor('BE13001319659839', 'GEBABEBB', 'Fred');
+        $this->transactions = [];
+        if ($debtor->isValid()) {
+            $this->debtor = $debtor;
+        } else {
+            throw new InvalidDebtorException('Invalid Debtor', Debtor::DEBTOR_INVALID);
         }
     }
 
@@ -50,26 +50,25 @@ class ExportService {
      * @param TransactionModelInterface $transaction
      * @return bool Successfully add transaction
      */
-    function addTransaction( TransactionModelInterface $transaction)
+    function addTransaction(TransactionModelInterface $transaction)
     {
-        if($transaction->isValid()) {
+        if ($transaction->isValid()) {
             array_push($this->transactions, $transaction);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    function export($batchId=null)
+    function export($batchId = null)
     {
-        if(is_null($batchId))
-            $batchId=date("Ymdhi");
+        if (is_null($batchId))
+            $batchId = date("Ymdhi");
         $sepa = new Initation($batchId);
         $sepa->setDebtor($this->debtor);
         if (count($this->transactions) > 0) {
             /**
-             * @var \NanitEu\SepaCreditXMLTransfer\Models\TransactionModel $transaction
+             * @var TransactionModel $transaction
              */
             foreach ($this->transactions as $transaction) {
                 $sepa_transaction = new Transaction(
@@ -83,16 +82,13 @@ class ExportService {
                 $sepa->addTransaction($sepa_transaction);
             }
         }
-            $sepa->build();
-            try
-            {
-                $sepa->validateXML();
-                return $sepa->getXML();
-            }
-            catch (Exception $e)
-            {
-                throw new XmlValidationException('Validation Error',0,$e);
-            }
+        $sepa->build();
+        try {
+            $sepa->validateXML();
+            return $sepa->getXML();
+        } catch (Exception $e) {
+            throw new XmlValidationException('Validation Error', 0, $e);
+        }
 
     }
 

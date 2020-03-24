@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Controller;
 
 use NanitEu\SepaCreditXMLTransfer\Controller\ValidationController;
 use PHPUnit\Framework\TestCase;

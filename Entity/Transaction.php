@@ -3,6 +3,13 @@
 namespace NanitEu\SepaCreditXMLTransfer\Entity;
 
 
+/**
+ * Class Transaction
+ *
+ * This Entity will gather data to be exported in sepa file
+ *
+ * @package NanitEu\SepaCreditXMLTransfer\Entity
+ */
 class Transaction
 {
     public $amount;
@@ -16,16 +23,16 @@ class Transaction
     private $decode_html_entities = true;
 
     /**
-     *
+     * Transaction constructor.
      * @param string $name
      * @param float $amount
      * @param string $iban
      * @param string $bic
      * @param string $descr
-     * @param string $end_to_end
+     * @param string|null $end_to_end
      * @param bool $decode_html_entities
      */
-    public function __construct($name, $amount, $iban, $bic, $descr = '', $end_to_end=null, $decode_html_entities = true)
+    public function __construct(string $name,float $amount,string  $iban,string  $bic,string  $descr = '',string $end_to_end=null,bool $decode_html_entities = true)
     {
         $this->decode_html_entities=$decode_html_entities;
         $this->setAmount($amount)
@@ -40,7 +47,7 @@ class Transaction
      * @param float $amount
      * @return Transaction
      */
-    public function setAmount($amount)
+    public function setAmount(float $amount)
     {
         $this->amount = $amount;
         return $this;
@@ -50,7 +57,7 @@ class Transaction
      * @param string $bic
      * @return Transaction
      */
-    public function setBic($bic)
+    public function setBic(string $bic)
     {
         $this->bic = $bic;
         return $this;
@@ -60,7 +67,7 @@ class Transaction
      * @param string $iban
      * @return Transaction
      */
-    public function setIban($iban)
+    public function setIban(string $iban)
     {
         $this->iban = $iban;
         return $this;
@@ -70,7 +77,7 @@ class Transaction
      * @param string|string[]|null $name
      * @return Transaction
      */
-    public function setName($name)
+    public function setName(?string $name)
     {
         $name= str_replace(
             array('@', '&'),
