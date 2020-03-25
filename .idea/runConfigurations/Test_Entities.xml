@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Test Entities" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+    <TestRunner class="App\Tests" directory="$PROJECT_DIR$/tests/" file="$PROJECT_DIR$/tests/Entity/DebtorTest.php" options="--config phpunit.xml --coverage-html tests/out/" />
+    <method v="2" />
+  </configuration>
+</component>

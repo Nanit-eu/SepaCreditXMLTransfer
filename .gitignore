@@ -1,2 +1,3 @@
 /Example/*.xml
 /vendor/
+/tests/out/
