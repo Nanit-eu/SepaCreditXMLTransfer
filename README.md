@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Nanit-eu/SepaCreditXMLTransfer.svg?branch=master)](https://travis-ci.org/Nanit-eu/SepaCreditXMLTransfer)
+
 
 sepa-credit-xml-transfer
 ========================
